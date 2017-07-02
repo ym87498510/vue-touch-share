@@ -61,15 +61,7 @@ npm run build --report
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ![](src/assets/logo.png)
-[baidu](http://www.baidu.com)
-- 我们是要你
-- 不耻下问
-- 从男盗女娼的你
 
-> 下面看看有序列表
-1. 到处挖泥船
-2. 打开检查呢
-3. 成我 今晚底层
 
 
 
