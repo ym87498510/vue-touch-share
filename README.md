@@ -3,6 +3,7 @@
 1. ## 开端
 
 > 先来一个300ms的故事
+
 #### 移动端页面click事件响应都会慢300ms
 
 最开始移动设备访问当都是pc上的页面，默认viewport（980px）都页面通常需要双击或
@@ -58,9 +59,7 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-![](src/assets/logo.png)
 
 
 

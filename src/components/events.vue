@@ -3,8 +3,26 @@
   <div class="wrapper">
     <p>eventName:{{eventName}}</p>
     <v-touch class="back" tag="div"
+             @rotate="rotate"
+             @tap="tap"
+             @rotatestart="rotatestart"
+             @rotatemove="rotatemove"
+             @rotateend="rotateend"
+             @rotatecancel="rotatecancel"
+             @swipeleft="swipeleft"
+             @swiperight="swiperight"
+             @swipeup="swipeup"
+             @swipedown="swipedown"
+             @press="press"
+             @pressup="pressup"
+             @pinch="pinch"
              @pinchin="pinchin"
-    >Tap me!
+             @pinchout="pinchout"
+             @panleft="panleft"
+             @panright="panright"
+             @panup="panup"
+             @pandown="pandown"
+    >Touch me!
     </v-touch>
   </div>
 </template>
