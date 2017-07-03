@@ -28,8 +28,36 @@ preventDefault()事件可以阻止滚动。
 
 * touchend事件：当手指从屏幕上离开的时候触发。
 
+* touchcancel: 系统取消touch时触发，一般不使用。
+
 这里需要注意一下，touch事件没有延迟，touch 事件推出后，在移动端设备中，touch和click事件是并存的
 
+那么我们丛touch事件能得到什么呢？
+```
+touches：表示当前跟踪的触摸操作的touch对象的数组。
+
+targetTouches：特定于事件目标的Touch对象的数组。
+
+changeTouches：表示自上次触摸以来发生了什么改变的Touch对象的数组。
+
+```
+一个touch对象包含：
+```
+{
+    screenX: 511, 
+    screenY: 400,//触点相对于屏幕左边沿的Y坐标
+    clientX: 244.37899780273438, 
+    clientY: 189.3820037841797,//相对于可视区域
+    pageX: 244.37, 
+    pageY: 189.37,//相对于HTML文档顶部，当页面有滚动的时候与clientX=Y 不等
+    force: 1,//压力大小，是从0.0(没有压力)到1.0(最大压力)的浮点数
+    identifier: 1036403715,//一次触摸动作的唯一标识符
+    radiusX: 37.565673828125, //能够包围用户和触摸平面的接触面的最小椭圆的水平轴(X轴)半径
+    radiusY: 37.565673828125,
+    rotationAngle: 0,//它是这样一个角度值：由radiusX 和 radiusY 描述的正方向的椭圆，需要通过顺时针旋转这个角度值，才能最精确地覆盖住用户和触摸平面的接触面
+    target: {} // 此次触摸事件的目标element
+}
+```
 ![](src/assets/oh.png)
 
 #### 两种事件的并存带来点透的bug
@@ -38,7 +66,7 @@ preventDefault()事件可以阻止滚动。
 后click直接传递给底层元素，这个需要与冒泡区分开，这不是冒泡，这是真真切切的点在了底层元素上
 
 
-
+``****``
 
 
 ## Build Setup

@@ -1,4 +1,3 @@
-<!--需要注释meta中视口-->
 <template>
   <div class="wrapper">
     <p>事件名称:{{eventName}}</p>
@@ -9,13 +8,13 @@
     <v-touch class="back" tag="div"
              @pan="pan"
     >Pan me!
-
-
     </v-touch>
+    <on-off></on-off>
   </div>
 </template>
 
 <script>
+  import onOff from '../../src/components/onoff.vue'
   export default {
     name: 'pan',
     data () {
@@ -35,6 +34,9 @@
         this.eventName = event.type
         this.distance = parseInt(event.distance)
       }
+    },
+    components: {
+      onOff
     }
   }
 </script>
@@ -46,5 +48,6 @@
     width: 7.5rem;
     height: 5rem;
     background: #24b735;
+    margin-bottom: 20px;
   }
 </style>

@@ -1,4 +1,3 @@
-<!--需要注释meta中视口-->
 <template>
   <div class="wrapper">
     <p>事件名称:{{eventName}}</p>
@@ -6,13 +5,11 @@
     <p>中心移动的距离:{{distance}}</p>
     <p>中心坐标x:{{pointX}}&nbsp;y:{{pointY}}</p>
     <p>缩放率{{scale}}</p>
-    <!--角度明细暂时不能确定-->
-    <p>角度:{{rotation}}</p>
-    <p>捏合角度:{{angle}}</p>
     <!--可以绑定参数，threshold最小移动距离  v-bind:pan-options="{ direction: 'horizontal', threshold: 10 }"  -->
     <v-touch class="back" tag="div"
              @pinch="pinch"
-    >捏我!
+    >
+      <img ref="pic" src="../assets/oh.png">
     </v-touch>
   </div>
 </template>
@@ -28,13 +25,14 @@
         pointY: 0,
         distance: 0,
         scale: 1,
-        rotation: 0,
-        angle: 0
+        picWidth: null
       }
+    },
+    mounted () {
+      this.setWidth()
     },
     methods: {
       pinch (event) {
-        console.log(event)
         this.pointX = event.center.x
         this.pointY = event.center.y
         this.deltaTime = event.deltaTime
@@ -43,6 +41,14 @@
         this.scale = event.scale.toFixed(2)
         this.rotation = event.rotation.toFixed(2)
         this.angle = event.angle.toFixed(2)
+        this.$refs.pic.style.width = parseInt(this.picWidth) * event.scale + 'px'
+        if (event.isFinal) {
+          this.setWidth()
+        }
+      },
+      setWidth () {
+        console.log('setWidth')
+        this.picWidth = window.getComputedStyle(this.$refs.pic).width
       }
     }
   }
@@ -54,7 +60,14 @@
     box-sizing: border-box;
     width: 7.5rem;
     height: 5rem;
-    line-height: 5rem;
-    background: #24b735;
+    border: 5px solid #888;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    width: 7.5rem;
+    min-width: 1rem;
   }
 </style>

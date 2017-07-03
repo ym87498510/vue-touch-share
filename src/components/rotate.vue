@@ -1,4 +1,3 @@
-<!--需要注释meta中视口-->
 <template>
   <div class="wrapper">
     <p>事件名称:{{eventName}}</p>
@@ -7,12 +6,12 @@
     <p>中心坐标x:{{pointX}}&nbsp;y:{{pointY}}</p>
     <p>缩放率{{scale}}</p>
     <!--角度明细暂时不能确定-->
-    <p>角度:{{rotation}}</p>
-    <p>捏合角度:{{angle}}</p>
+    <p>旋转角度:{{rotation}}</p>
     <!--可以绑定参数，threshold最小移动距离  v-bind:pan-options="{ direction: 'horizontal', threshold: 10 }"  -->
     <v-touch class="back" tag="div"
              @rotate="rotate"
-    >捏我!
+    >
+      <img ref="pic" src="../assets/oh.png">
     </v-touch>
   </div>
 </template>
@@ -28,13 +27,11 @@
         pointY: 0,
         distance: 0,
         scale: 1,
-        rotation: 0,
-        angle: 0
+        rotation: 0
       }
     },
     methods: {
       rotate (event) {
-        console.log(event)
         this.pointX = event.center.x
         this.pointY = event.center.y
         this.deltaTime = event.deltaTime
@@ -42,7 +39,7 @@
         this.distance = parseInt(event.distance)
         this.scale = event.scale.toFixed(2)
         this.rotation = event.rotation.toFixed(2)
-        this.angle = event.angle.toFixed(2)
+        this.$refs.pic.style.transform = 'rotateZ( ' + this.rotation * 5 + 'deg )'
       }
     }
   }
@@ -54,7 +51,15 @@
     box-sizing: border-box;
     width: 7.5rem;
     height: 5rem;
-    line-height: 5rem;
-    background: #24b735;
+    border: 5px solid #888;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    width: 7.5rem;
+    min-width: 1rem;
+    transform: rotateZ( 0deg );
   }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div id="app">
+    <!--<touchmove></touchmove>-->
     <!--测试点击延迟-->
-    <!--<click-delay></click-delay>-->
+    <click-delay></click-delay>
     <!--测试点透bug-->
     <!--<click-bug></click-bug>-->
     <!--看看都有哪些事件-->
@@ -10,11 +11,12 @@
     <!--<pan></pan>-->
     <!--<swiper></swiper>-->
     <!--<pinch></pinch>-->
-    <rotate></rotate>
+    <!--<rotate></rotate>-->
   </div>
 </template>
 
 <script>
+import touchmove from './components/touchMoveEvent.vue'
 import clickBug from './components/clickBug'
 import events from './components/events'
 import clickDelay from './components/clickDelay'
@@ -27,6 +29,7 @@ import rotate from './components/rotate'
 export default {
   name: 'app',
   components: {
+    touchmove,
     clickBug,
     clickDelay,
     events,

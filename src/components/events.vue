@@ -1,4 +1,3 @@
-<!--需要注释meta中视口-->
 <template>
   <div class="wrapper">
     <p>eventName:{{eventName}}</p>
