@@ -19,7 +19,7 @@ ms'成了移动设备的规范。
 #### HTML5带来了touch事件
 
 随着HTML技术的更新迭代以及移动设备的发展壮大，原来适用与pc的交互技术远远不能满足需求，
-HTML5的出现标志这移动端大行其道的时代来临，其中交互方面也带来了新的touch事件，主要包
+HTML5的出现标志这移动端大行其道的时代来临，其中交互方面也带来了新的touch事件(支持多点触控)，主要包
 括：touchstart、touchmove和touchend。
 * touchstart事件：当手指触摸屏幕时候触发，即使已经有一个手指放在屏幕上也会触发。
 
@@ -60,13 +60,35 @@ changeTouches：表示自上次触摸以来发生了什么改变的Touch对象�
 ```
 ![](src/assets/oh.png)
 
-#### 两种事件的并存带来点透的bug
+#### 两种事件的并存带来点透的bug（幽灵点击）
 
-由于touch事件没有延迟，而click事件有延迟，设想一个场景，上层元素touchstart后消失，300ms
+由于touch事件没有延迟，而click事件有延迟，设想一个场景，上层元素touch后消失，300ms
 后click直接传递给底层元素，这个需要与冒泡区分开，这不是冒泡，这是真真切切的点在了底层元素上
 
 
-``****``
+
+2. ## 解决方案
+
+> 有问题总要解决的吧
+
+#### 300毫秒如何干掉？
+
+1. 设置不能缩放：user-scalable=no。 不能缩放就不会有双击缩放操作，因此click事件也就没了300ms延迟，这个是Chrome首先在Android中提出的。
+2. 设置显示宽度：width=device-width。Chrome 开发团队不久前宣布，在 Chrome 32 这一版中，他们将在包含 width=device-width 或者置为比 viewport 值更小的页面上禁用双击缩放。当然，没有双击缩放就没有 300 毫秒点击延迟。
+3. 以上其实可以归纳为```<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">```
+4. FastClick, FastClick是 FT Labs 专门为解决移动端浏览器 300 毫秒点击延迟问题所开发的一个轻量级的库。简而言之，FastClick 在检测到 touchend事件的时候，会通过 DOM 自定义事件立即触发一个模拟click事件，并把浏览器在 300 毫秒之后真正触发的 click事件阻止掉。
+
+#### 幽灵点击怎么办？
+
+1. 上下层都用touch事件模拟
+2. 缓动动画延迟消失
+3. FastClick
+
+3. ## 这样我们就满足了吗？
+
+过去用鼠标只能点点，但乔布斯给我买带来了多点触摸，难道还是只能点点吗？这样的情况下，各种手势库应运而生，hammer.js就是其中但优秀的库之一，当下较火的前段框架vue也不甘落后，带来了vue-touch，基于hammer.js的二次封装，好吧，下面我们进入触摸的世界
+
+## 进入[Vue-touch](https://github.com/vuejs/vue-touch)
 
 
 ## Build Setup
