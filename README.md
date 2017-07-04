@@ -66,7 +66,7 @@ changeTouches：表示自上次触摸以来发生了什么改变的Touch对象�
 #### 300毫秒如何干掉？
 
 1. 设置不能缩放：user-scalable=no。 不能缩放就不会有双击缩放操作，因此click事件也就没了300ms延迟，这个是Chrome首先在Android中提出的。
-2. 设置显示宽度：width=device-width。Chrome 开发团队不久前宣布，在 Chrome 32 这一版中，他们将在包含 width=device-width 或者置为比 viewport 值更小的页面上禁用双击缩放。当然，没有双击缩放就没有 300 毫秒点击延迟。
+2. 设置显示宽度：width=device-width。包含 width=device-width 或者置为比 viewport 值更小的页面上会禁用双击缩放。当然，没有双击缩放就没有 300 毫秒点击延迟。
 3. 以上其实可以归纳为```<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">```
 4. FastClick, FastClick是 FT Labs 专门为解决移动端浏览器 300 毫秒点击延迟问题所开发的一个轻量级的库。简而言之，FastClick 在检测到 touchend事件的时候，会通过 DOM 自定义事件立即触发一个模拟click事件，并把浏览器在 300 毫秒之后真正触发的 click事件阻止掉。
 
