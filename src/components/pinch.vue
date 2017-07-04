@@ -9,7 +9,7 @@
     <v-touch class="back" tag="div"
              @pinch="pinch"
     >
-      <img ref="pic" src="../assets/oh.png">
+      <img ref="pic" src="../assets/oh.jpeg">
     </v-touch>
   </div>
 </template>

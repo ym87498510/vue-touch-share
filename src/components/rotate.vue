@@ -11,7 +11,7 @@
     <v-touch class="back" tag="div"
              @rotate="rotate"
     >
-      <img ref="pic" src="../assets/oh.png">
+      <img ref="pic" src="../assets/oh.jpeg">
     </v-touch>
   </div>
 </template>
@@ -39,7 +39,7 @@
         this.distance = parseInt(event.distance)
         this.scale = event.scale.toFixed(2)
         this.rotation = event.rotation.toFixed(2)
-        this.$refs.pic.style.transform = 'rotateZ( ' + this.rotation * 5 + 'deg )'
+        this.$refs.pic.style.transform = 'rotateZ( ' + this.rotation + 'deg )'
       }
     }
   }
